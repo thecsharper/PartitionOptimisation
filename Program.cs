@@ -18,11 +18,11 @@ public class Solution
         foreach (int num in nums) totalSum += num;
 
         var target = totalSum / 2;
-        bool[] dp = new bool[target + 1];
+        var dp = new bool[target + 1];
         dp[0] = true; // Empty subset sums to 0
 
         // Build DP table
-        for (int i = 0; i < nums.Length; i++)
+        for (var i = 0; i < nums.Length; i++)
         {
             for (int j = target; j >= nums[i]; j--)
             {
@@ -31,7 +31,7 @@ public class Solution
         }
 
         // Find the largest achievable sum <= target
-        int closestSum = 0;
+        var closestSum = 0;
         for (int i = target; i >= 0; i--)
         {
             if (dp[i])
@@ -44,9 +44,9 @@ public class Solution
         // Reconstruct subsets
         var subset1 = new List<int>();
         var subset2 = new List<int>();
-        int remainingSum = totalSum;
+        var remainingSum = totalSum;
 
-        for (int i = nums.Length - 1; i >= 0; i--)
+        for (var i = nums.Length - 1; i >= 0; i--)
         {
             if (closestSum >= nums[i] && dp[closestSum - nums[i]])
             {
